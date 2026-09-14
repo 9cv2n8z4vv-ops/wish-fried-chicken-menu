@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node restore-structure.cjs && next dev",
+    "build": "node restore-structure.cjs && next build",
     "start": "next start",
-    "check": "tsc --noEmit",
-    "db:migrate": "tsx scripts/migrate.ts",
-    "db:seed": "tsx scripts/seed.ts",
-    "db:setup": "npm run db:migrate && npm run db:seed"
+    "check": "node restore-structure.cjs && tsc --noEmit",
+    "db:migrate": "node restore-structure.cjs && tsx scripts/migrate.ts",
+    "db:seed": "node restore-structure.cjs && tsx scripts/seed.ts",
+    "db:setup": "node restore-structure.cjs && tsx scripts/migrate.ts && tsx scripts/seed.ts",
+    "restore": "node restore-structure.cjs"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
